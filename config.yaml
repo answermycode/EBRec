@@ -1,0 +1,82 @@
+Youshu:
+  data_path: './datasets'
+  batch_size_train: 4096 # the batch size for training
+  batch_size_test: 4096 # the batch size for testing
+  topk: [20, 40] # the topks metrics for evaluation
+  neg_num: 1 # number of negatives used for BPR loss. All the experiments use 1.
+  
+  # search hyperparameters
+  # the following are the best settings
+  aug_type: "ED" # options: ED, MD, OP
+  ed_interval: 1 # by how many epochs to dropout edge, default is 1
+  embedding_sizes: [64] # the embedding size for user, bundle, and item
+  num_layerss: [1] # number of layers for the infomation progagation over the item- and bundle-level graphs
+
+  # the following dropout rates are with respect to the "aug_type", i.e., if aug_type is ED, the following dropout rates are for ED.
+  item_level_ratios: [0.6] #0.2 /0.5the dropout ratio for item-view graph
+  bundle_level_ratios: [0.4] #0.2 /0.4the dropout ratio for bundle-view graph
+  bundle_agg_ratios: [0.1] #0.2 /0.1the dropout ratio for bundle-item affiliation graph
+
+  lrs: [1.0e-3] #1e-3 learning rate
+  l2_regs: [1.0e-4] # 1e-4 the l2 regularization weight: lambda_2
+  c_lambdas: [0.03] #0.04 the contrastive loss weight: lambda_1
+  c_temps: [0.24] #0.24/the temperature in the contrastive loss: tau
+
+  epochs: 100 # number of epochs to train
+  test_interval: 1 # by how many epochs to run the validation and testing.
+  enhance: '/lightgclyoushu_result30.npy'
+  weight: 1
+
+
+NetEase:
+  data_path: './datasets'
+  batch_size_train: 4096
+  batch_size_test: 4096
+  topk: [20, 40]
+  neg_num: 10
+
+  # the following are the best settings
+  aug_type: "ED"
+  ed_interval: 1
+  embedding_sizes: [64]
+  num_layerss: [1] # 1
+  lrs: [1.0e-3] # 1.0e-3
+  item_level_ratios: [0.2] # 0.2
+  bundle_level_ratios: [0.5] # 0.5
+  bundle_agg_ratios: [0.1] # 0.1
+  l2_regs: [4.0e-5] # 1.0e-5
+
+  c_lambdas: [0.11] # 0.11
+  c_temps: [0.22] # 0.22
+
+  epochs: 100
+  test_interval: 1
+  enhance: '/lightgclnetease_result30.npy'
+  weight: 2
+
+
+iFashion:
+  data_path: './datasets'
+  batch_size_train: 4096
+  batch_size_test: 4096
+  topk: [20, 40]
+  neg_num: 1
+
+  # the following are the best settings
+  aug_type: "ED"
+  ed_interval: 1
+  embedding_sizes: [64]
+  num_layerss: [1]
+  lrs: [1.0e-4] # 1.0e-4
+  item_level_ratios: [0.6] # 0.5
+  bundle_level_ratios: [0.05] # 0.05
+  bundle_agg_ratios: [0.05] # 0.05
+  l2_regs: [3.0e-5] #1.0e-5
+
+  c_lambdas: [0.23] #0.24
+  c_temps: [0.08] # 0.08
+
+  epochs: 100
+  test_interval: 1 
+  enhance: '/lightgclifashion_result10.npy'
+  weight: 1
